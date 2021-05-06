@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo $GITHUB_TOKEN | docker login -u legalthingsadmin --password-stdin docker.pkg.github.com
+
+docker tag $DOCKER_REPO docker.pkg.github.com/$TRAVIS_REPO_SLUG/$DOCKER_REPO:$TAG
+docker tag $DOCKER_REPO docker.pkg.github.com/$TRAVIS_REPO_SLUG/$DOCKER_REPO:latest
+docker push docker.pkg.github.com/$TRAVIS_REPO_SLUG/$DOCKER_REPO:$TAG
+docker push docker.pkg.github.com/$TRAVIS_REPO_SLUG/$DOCKER_REPO:latest
